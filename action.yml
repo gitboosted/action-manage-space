@@ -1,6 +1,9 @@
 name: "Manage GitBoosted Space"
 description: "Github action managing GitBoosted Spaces"
 author: "GitBoosted"
+branding:
+  icon: "upload"
+  color: "orange"
 inputs:
   api_key:
     description: "The API key to use for the GitBoosted API"
