@@ -1,0 +1,23 @@
+name: "Manage GitBoosted Space"
+description: "Github action managing GitBoosted Spaces"
+author: "GitBoosted"
+inputs:
+  api_key:
+    description: "The API key to use for the GitBoosted API"
+    required: true
+  space_name:
+    description: "The name of the space"
+    required: true
+  repository_name:
+    description: "The name of the repository to connect."
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: Send API Call
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: "https://api.gitboosted.com/spaces"
+        method: "POST"
+        customHeaders: '{"Authorization": "Bearer {{inputs.api_key}}"}'
+        data: '{"name": "{{inputs.space_name}}"", "repository": "{{inputs.repository_name}}"}'
