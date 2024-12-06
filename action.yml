@@ -17,10 +17,13 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: ECHO
+      run: echo "Creating Space: ${{inputs.space_name}}"
+      
     - name: Send API Call
       uses: fjogeleit/http-request-action@v1
       with:
         url: "https://api.gitboosted.com/spaces"
         method: "POST"
         customHeaders: '{"Authorization": "{{inputs.api_key}}"}'
-        data: '{"name": "${{github..space_name}}", "repository": "{{inputs.repository_name}}"}'
+        data: '{"name": "${{inputs.space_name}}", "repository": "{{inputs.repository_name}}"}'
