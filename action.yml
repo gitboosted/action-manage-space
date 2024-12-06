@@ -6,7 +6,7 @@ branding:
   color: "orange"
 inputs:
   api_key:
-    description: "The API key to use for the GitBoosted API"
+    description: "BASE64 Encoded clientId:clientSecret. Head to https://docs.gitboosted.com to learn how to get your API key."
     required: true
   space_name:
     description: "The name of the space"
@@ -22,5 +22,5 @@ runs:
       with:
         url: "https://api.gitboosted.com/spaces"
         method: "POST"
-        customHeaders: '{"Authorization": "Bearer {{inputs.api_key}}"}'
-        data: '{"name": "{{inputs.space_name}}"", "repository": "{{inputs.repository_name}}"}'
+        customHeaders: '{"Authorization": "{{inputs.api_key}}"}'
+        data: '{"name": "${{github..space_name}}", "repository": "{{inputs.repository_name}}"}'
